@@ -1,8 +1,26 @@
 @import "normalize";
 @import "susy";
 
+@mixin cf {
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+}
+ /* Colors */
+ $color1: rgba(113, 218, 210, 0.8);
+ $color2: rgba(250, 231, 179, 0.8);
+ $color3: rgba(240, 150, 113, 0.8);
+ $color4: rgba(234, 159, 195, 0.8);
+
+ /* Variables - Breakpoints */
+ $bp-s: 420px;
+ $bp-m: 720px;
+ $bp-l: 1100px;
+
 $susy:(
-  columns: 4,
+  columns: 16,
   container: 1140px,
   debug: (image: show),
   global-box-sizing: border-box
@@ -10,36 +28,109 @@ $susy:(
 
 @include border-box-sizing;
 
+//==========
+// Layouts
+//==========
+
 .wrap {
   @include container();
-  height: 100vh;
 }
 .content{
-  margin-top: 10vh;
-  height: 80vh;
-  background: rgba(113, 218, 210, 0.8);
-  @include span(3 of 4);
+  @include span(12 of 16);
 }
 .sidebar{
-  margin-top: 10vh;
-  height: 40vh;
-  background: rgba(250, 231, 179, 0.8);
-  @include span(1 of 4 last);
+  @include span(4 of 16 last);
 }
-@include nested(3) {
-  .inner-content{
-    margin-top: 5vh;
-    height: 40vh;
-    background: rgba(90, 200, 150, 0.5);
-    @include span(2);
+/* Small Breakpoint */
+
+@media(min-width: $bp-s) {
+  .content{
+    @include span(16);
+  }
+  .sidebar{
+    in span(16);
+  }
+  .gallery{
+    @include cf;
+    width: span(12 of 16);
+    margin-left: span(1 wide of 12);
+  }
+  @include nested(16) {
+    .gallery__item{
+      @include span(10);
+      margin-bottom: gutter();
+    }
   }
 }
 
+// ==========
+// Taking care of CSS
+//=========
+.logo{
+  float: left;
+  line-height: 2rem;
+  font-size: 1.5rem;
+}
+nav{
+  float: right;
+  li{
+    list-style: none;
+    float: left;
+    margin-left: 1rem;
+    line-height: 2rem;
+  }
+}
+.content{
+  margin-top: 5vh;
+  padding-bottom: 1rem;
+  background: $color1;
+}
+.sidebar{
+  margin-top: 5vh;
+  background: $color2;
+  padding-bottom: 1rem;
+  a{
+    color: #666;
+    padding-left: 1rem;
+    line-height: 2;
+    text-decoration: none;
+  }
+}
+.gallery{
+  @include cf;
+  width: span(10 of 12);
+  margin-left: span(1 wide of 12);
+}
+@include nested(10) {
+  .gallery__item{
+    @include span(2);
+    margin-bottom: gutter();
+    &:nth-child(5n){
+      @include last;
+    }
+  }
+}
+.widget{
+  @include gallery( 4 of 16 );
+}
+.widget{
+  background:$color3;
+}
 h2{
   padding: 1rem 0;
   text-align: center;
   color: #555;
 }
+
+.site-header, .site-footer {
+  background: $color4;
+}
 .site-header {
-  background: rgba(234, 159, 195, 0.8);
+  a{
+    color: #555;
+    text-decoration: none;
+  }
+}
+.site-footer{
+  margin-top: 5vh;
 }
