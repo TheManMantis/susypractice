@@ -338,6 +338,8 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+/* Colors */
+/* Variables - Breakpoints */
 *, *:before, *:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -357,6 +359,43 @@ table {
     display: block;
     clear: both; }
 
+.content {
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0; }
+
+.sidebar {
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0; }
+
+/* Small Breakpoint */
+@media (min-width: 420px) {
+  .content {
+    width: 74.68354%;
+    float: left;
+    margin-right: 1.26582%; }
+
+  .sidebar {
+    width: 24.05063%;
+    float: right;
+    margin-right: 0; }
+
+  .gallery {
+    width: 74.68354%;
+    margin-left: 8.47458%; }
+    .gallery:after {
+      content: "";
+      clear: both;
+      display: block; }
+
+  .gallery__item {
+    width: 62.02532%;
+    float: left;
+    margin-right: 1.26582%;
+    margin-bottom: 1.26582%; } }
 .logo {
   float: left;
   line-height: 2rem;
@@ -369,16 +408,6 @@ nav {
     float: left;
     margin-left: 1rem;
     line-height: 2rem; }
-
-.content {
-  width: 74.68354%;
-  float: left;
-  margin-right: 1.26582%; }
-
-.sidebar {
-  width: 24.05063%;
-  float: right;
-  margin-right: 0; }
 
 .content {
   margin-top: 5vh;
@@ -453,7 +482,6 @@ li {
 img {
   max-width: 100%;
   height: auto; }
-
 
 .site-header, .site-footer {
   background: rgba(234, 159, 195, 0.8); }

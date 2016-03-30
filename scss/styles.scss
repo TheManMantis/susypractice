@@ -36,19 +36,19 @@ $susy:(
   @include container();
 }
 .content{
-  @include span(12 of 16);
+  @include span(16);
 }
 .sidebar{
-  @include span(4 of 16 last);
+  @include span(16);
 }
 /* Small Breakpoint */
 
 @media(min-width: $bp-s) {
   .content{
-    @include span(16);
+    @include span(12 of 16);
   }
   .sidebar{
-    in span(16);
+    @include span(4 of 16 last);
   }
   .gallery{
     @include cf;
@@ -121,6 +121,18 @@ h2{
   text-align: center;
   color: #555;
 }
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0; }
+
+li {
+  list-style: none; }
+
+img {
+  max-width: 100%;
+  height: auto; }
 
 .site-header, .site-footer {
   background: $color4;
