@@ -9,7 +9,7 @@
   }
 }
  /* Colors */
- $color1: rgba(113, 218, 210, 0.8);
+ $color1: rgba(238, 243, 242, 0.8);
  $color2: rgba(250, 231, 179, 0.8);
  $color3: rgba(240, 150, 113, 0.8);
  $color4: rgba(234, 159, 195, 0.8);
@@ -20,9 +20,9 @@
  $bp-l: 1100px;
 
 $susy:(
-  columns: 16,
+  columns: 12,
   container: 1140px,
-  debug: (image: show),
+  debug:(image:hide),
   global-box-sizing: border-box
   );
 
@@ -36,66 +36,12 @@ $susy:(
   @include container();
 }
 .content{
-  @include span(16);
+  @include span(10 of 12);
 }
 .sidebar{
-  @include span(16);
-}
-/* Small Breakpoint */
-
-@media(min-width: $bp-s) {
-  .content{
-    @include span(12 of 16);
-  }
-  .sidebar{
-    @include span(4 of 16 last);
-  }
-  .gallery{
-    @include cf;
-    width: span(12 of 16);
-    margin-left: span(1 wide of 12);
-  }
-  @include nested(16) {
-    .gallery__item{
-      @include span(10);
-      margin-bottom: gutter();
-    }
-  }
+  @include span(2 of 12 last);
 }
 
-// ==========
-// Taking care of CSS
-//=========
-.logo{
-  float: left;
-  line-height: 2rem;
-  font-size: 1.5rem;
-}
-nav{
-  float: right;
-  li{
-    list-style: none;
-    float: left;
-    margin-left: 1rem;
-    line-height: 2rem;
-  }
-}
-.content{
-  margin-top: 5vh;
-  padding-bottom: 1rem;
-  background: $color1;
-}
-.sidebar{
-  margin-top: 5vh;
-  background: $color2;
-  padding-bottom: 1rem;
-  a{
-    color: #666;
-    padding-left: 1rem;
-    line-height: 2;
-    text-decoration: none;
-  }
-}
 .gallery{
   @include cf;
   width: span(10 of 12);
@@ -110,11 +56,75 @@ nav{
     }
   }
 }
+
+
+@media(max-width: $bp-s) {
+  .content{
+    @include span(12);
+  }
+  .sidebar{
+    @include span(12);
+  }
+  .gallery{
+    @include span(10);
+  }
+  .gallery__item{
+    @include span(8);
+  }
+}
+
+
+@media(max-width: 720px) {
+  .content{
+    @include span(12);
+  }
+  .sidebar{
+    @include span(12);
+  }
+  .gallery{
+    @include cf;
+    width: span(12 of 16);
+    margin-left: span(1 wide of 12);
+  }
+  @include nested(16) {
+    .gallery__item{
+      @include span(10);
+      margin-bottom: gutter();
+    }
+  }
+  @include nested(10) {
+    .gallery__item{
+      @include span(2);
+      margin-bottom: gutter();
+      &:nth-child(5n){
+        @include last;
+      }
+    }
+  }
+}
+
 .widget{
   @include gallery( 4 of 16 );
 }
-.widget{
-  background:$color3;
+// ==========
+// Taking care of CSS
+//=========
+body{
+  background: #014567;
+}
+.logo{
+  float: left;
+  line-height: 2rem;
+  font-size: 1.5rem;
+}
+nav{
+  float: right;
+  li{
+    list-style: none;
+    float: left;
+    margin-left: 1rem;
+    line-height: 2rem;
+  }
 }
 h2{
   padding: 1rem 0;
@@ -129,6 +139,28 @@ li {
 
 li {
   list-style: none; }
+.content{
+  margin-top: 5vh;
+  padding-bottom: 1rem;
+  background: $color1;
+  border-radius: 4px;
+  -webkit-box-shadow: 2px 2px 44px -4px rgba(0,0,0,0.36);
+  -moz-box-shadow: 2px 2px 44px -4px rgba(0,0,0,0.36);
+  box-shadow: 2px 2px 44px -4px rgba(0,0,0,0.36);
+  border: 1px solid #DEDEDE;
+}
+.sidebar{
+  margin-top: 5vh;
+  background: $color2;
+  padding-bottom: 1rem;
+  a{
+    color: #666;
+    padding-left: 1rem;
+    line-height: 2;
+    text-decoration: none;
+  }
+}
+
 
 img {
   max-width: 100%;
@@ -145,4 +177,9 @@ img {
 }
 .site-footer{
   margin-top: 5vh;
+  bottom: 0;
+  width: 100%;
+}
+.widget{
+  background:$color3;
 }
